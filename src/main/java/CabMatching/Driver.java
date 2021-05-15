@@ -8,12 +8,14 @@ import java.util.Comparator;
 @Getter
 @Setter
 public class Driver{
-    String name;
-    float rating;
+    private String name;
+    private float rating;
+    private int trips;
 
     public Driver(String name){
         this.name = name;
         rating=5;
+        trips=1;
     }
 
     public static class SortByRating implements Comparator<Driver> {

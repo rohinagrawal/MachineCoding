@@ -10,9 +10,11 @@ import java.util.List;
 public class Rider {
     private String name;
     private float rating;
+    private int trips;
 
     public Rider(String name){
         this.name = name;
         rating = 5;
+        trips=1;
     }
 }
