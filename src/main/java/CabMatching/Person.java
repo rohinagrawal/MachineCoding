@@ -3,15 +3,13 @@ package CabMatching;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
-public class Rider {
+public class Person {
     private String name;
     private float rating;
 
-    public Rider(String name){
+    void person(String name){
         this.name = name;
         rating = 5;
     }
