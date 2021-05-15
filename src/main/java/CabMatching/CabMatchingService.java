@@ -36,7 +36,7 @@ public class CabMatchingService {
         List<Driver> notAllowed = trips.stream()
                 .filter(trip -> trip.getRider().equals(rider) && trip.getDriverRating() <= 1 && trip.getRiderRating() <= 1)
                 .map(Trip::getDriver).collect(Collectors.toList());
-        drivers.sort(new SortByRating());
+        drivers.sort(new Driver.SortByRating());
         return drivers.stream().filter(driver -> !notAllowed.contains(driver)).findFirst().orElse(null);
     }
 
