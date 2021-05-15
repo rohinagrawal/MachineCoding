@@ -25,3 +25,14 @@ Q. Find eligible driver for
 
 A.  1. Nakul  
     2. Bheem
+
+Explanation - 
+
+Rider -
+Ram Avg Rating - 3.33
+Laxman Avg Rating - 5
+
+Driver - 
+Bheem Avg Rating - 3.66
+Nakul Avg Rating - 3.5
+Sahadev Avg Rating - 2.5

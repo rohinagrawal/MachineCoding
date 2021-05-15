@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CabMatchingService {
-    private ArrayList<Rider> riders = new ArrayList();
-    private ArrayList<Driver> drivers = new ArrayList();
-    private ArrayList<Trip> trips = new ArrayList();
+    private ArrayList<Rider> riders = new ArrayList<>();
+    private ArrayList<Driver> drivers = new ArrayList<>();
+    private ArrayList<Trip> trips = new ArrayList<>();
 
     public void addRider(String name){
         Rider rider = new Rider(name);
@@ -32,17 +32,12 @@ public class CabMatchingService {
     }
 
     public Driver matchDriver(Rider rider){
-//        TODO: Business Logic
-        Driver driver=null;
-//        ArrayList<Driver> badRatingDriver = new ArrayList();
-//        List<Trip> driver = trips.stream().filter(trip -> trip.getRider().equals(rider)).map(trip -> {
-//            if (trip.getDriverRating()<=1){
-//                badRatingDriver.add(trip.getDriver());
-//            }
-//            return trip;
-//        }).collect(Collectors.toList());
-//        list1.stream().filter()
-        return driver;
+//        TODO: Review Business Logic
+        List<Driver> notAllowed = trips.stream()
+                .filter(trip -> trip.getRider().equals(rider) && trip.getDriverRating() <= 1 && trip.getRiderRating() <= 1)
+                .map(Trip::getDriver).collect(Collectors.toList());
+        drivers.sort(new SortByRating());
+        return drivers.stream().filter(driver -> !notAllowed.contains(driver)).findFirst().orElse(null);
     }
 
     public void updateRiderRating(Rider rider,float riderRating){
