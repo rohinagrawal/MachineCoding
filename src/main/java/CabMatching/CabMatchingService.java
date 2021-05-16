@@ -5,9 +5,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CabMatchingService {
-    private ArrayList<Rider> riders = new ArrayList<>();
-    private ArrayList<Driver> drivers = new ArrayList<>();
-    private ArrayList<Trip> trips = new ArrayList<>();
+    private ArrayList<Rider> riders;
+    private ArrayList<Driver> drivers;
+    private ArrayList<Trip> trips;
+
+    public CabMatchingService() {
+        this.riders = new ArrayList<>();
+        this.drivers = new ArrayList<>();
+        this.trips = new ArrayList<>();
+    }
 
     public void initialize(){
         addRider("Ram");
