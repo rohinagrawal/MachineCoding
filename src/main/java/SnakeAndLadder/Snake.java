@@ -6,6 +6,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Snake {
-    int head;
-    int tail;
+    private int head;
+    private int tail;
+
+    public Snake(int head, int tail) {
+        this.head = head;
+        this.tail = tail;
+    }
 }

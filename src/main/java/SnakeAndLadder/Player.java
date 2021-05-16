@@ -3,8 +3,16 @@ package SnakeAndLadder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 public class Player {
-    String name;
+    private String id;
+    private String name;
+
+    Player(String name){
+        this.name = name;
+        this.id = UUID.randomUUID().toString();
+    }
 }
