@@ -15,6 +15,6 @@ public class Rider {
     public Rider(String name){
         this.name = name;
         rating = 5;
-        trips=1;
+        trips=0;
     }
 }
