@@ -9,7 +9,7 @@ public class CabMatchingService {
     private ArrayList<Driver> drivers = new ArrayList<>();
     private ArrayList<Trip> trips = new ArrayList<>();
 
-    public void initalize(){
+    public void initialize(){
         addRider("Ram");
         addRider("Laxman");
         addRider("Bharat");

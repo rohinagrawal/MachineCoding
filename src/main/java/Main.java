@@ -8,7 +8,7 @@ public class Main {
 
     public static void CabMatchingMain(){
         CabMatchingService cabMatchingService = new CabMatchingService();
-        cabMatchingService.initalize();
+        cabMatchingService.initialize();
         cabMatchingService.trip("Ram");
         cabMatchingService.trip("Laxman");
     }
