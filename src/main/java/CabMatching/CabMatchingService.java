@@ -6,12 +6,12 @@ import java.util.stream.Collectors;
 
 public class CabMatchingService {
     private ArrayList<Rider> riders;
-    private ArrayList<Driver> drivers;
+    private ArrayList<CabDriver> cabDrivers;
     private ArrayList<Trip> trips;
 
     public CabMatchingService() {
         this.riders = new ArrayList<>();
-        this.drivers = new ArrayList<>();
+        this.cabDrivers = new ArrayList<>();
         this.trips = new ArrayList<>();
     }
 
@@ -37,36 +37,36 @@ public class CabMatchingService {
     }
 
     public void addDriver(String name){
-        Driver driver = new Driver(name);
-        drivers.add(driver);
+        CabDriver cabDriver = new CabDriver(name);
+        cabDrivers.add(cabDriver);
     }
 
     public void addTrip(String riderName, String driverName, float riderRating, float driverRating){
         Rider rider = riders.stream().filter(rider1 -> rider1.getName().equals(riderName)).findFirst().orElse(null);
-        Driver driver = drivers.stream().filter(driver1 -> driver1.getName().equals(driverName)).findFirst().orElse(null);
-        Trip trip = new Trip(driver,rider, driverRating,riderRating);
+        CabDriver cabDriver = cabDrivers.stream().filter(cabDriver1 -> cabDriver1.getName().equals(driverName)).findFirst().orElse(null);
+        Trip trip = new Trip(cabDriver,rider, driverRating,riderRating);
         trips.add(trip);
 
         if(rider!=null)
         updateRiderRating(rider, riderRating);
 
-        if (driver!=null)
-        updateDriverRating(driver, driverRating);
+        if (cabDriver !=null)
+        updateDriverRating(cabDriver, driverRating);
     }
 
     public void trip(String riderName){
         Rider rider = riders.stream().filter(rider1 -> rider1.getName().equals(riderName)).findFirst().orElse(null);
-        Driver driver = matchDriver(rider);
-        System.out.println(driver.getName() + " " + driver.getRating());
+        CabDriver cabDriver = matchDriver(rider);
+        System.out.println(cabDriver.getName() + " " + cabDriver.getRating());
     }
 
-    public Driver matchDriver(Rider rider){
+    public CabDriver matchDriver(Rider rider){
 //        TODO: Review Business Logic
-        List<Driver> notAllowed = trips.stream()
+        List<CabDriver> notAllowed = trips.stream()
                 .filter(trip -> trip.getRider().equals(rider) && (trip.getDriverRating() <= 1 || trip.getRiderRating() <= 1))
-                .map(Trip::getDriver).collect(Collectors.toList());
-        drivers.sort(new Driver.SortByRating());
-        return drivers.stream().filter(driver -> !notAllowed.contains(driver)).findFirst().orElse(null);
+                .map(Trip::getCabDriver).collect(Collectors.toList());
+        cabDrivers.sort(new CabDriver.SortByRating());
+        return cabDrivers.stream().filter(cabDriver -> !notAllowed.contains(cabDriver)).findFirst().orElse(null);
     }
 
     public void updateRiderRating(Rider rider,float riderRating){
@@ -77,11 +77,11 @@ public class CabMatchingService {
         rider.setRating(currRating);
     }
 
-    public void updateDriverRating(Driver driver, float driverRating){
-        float oldRating = driver.getRating();
-        int n = driver.getTrips();
-        driver.setTrips(n+1);
+    public void updateDriverRating(CabDriver cabDriver, float driverRating){
+        float oldRating = cabDriver.getRating();
+        int n = cabDriver.getTrips();
+        cabDriver.setTrips(n+1);
         float currRating = ((oldRating * n) + driverRating)/(n+1);
-        driver.setRating(currRating);
+        cabDriver.setRating(currRating);
     }
 }

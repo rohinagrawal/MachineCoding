@@ -7,20 +7,20 @@ import java.util.Comparator;
 
 @Getter
 @Setter
-public class Driver{
+public class CabDriver {
     private String name;
     private float rating;
     private int trips;
 
-    public Driver(String name){
+    public CabDriver(String name){
         this.name = name;
         rating=5;
         trips=0;
     }
 
-    public static class SortByRating implements Comparator<Driver> {
+    public static class SortByRating implements Comparator<CabDriver> {
         @Override
-        public int compare(Driver a, Driver b) {
+        public int compare(CabDriver a, CabDriver b) {
             return (int) (b.getRating()-a.getRating());
         }
     }

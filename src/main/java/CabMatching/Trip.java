@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Trip {
-    private Driver driver;
+    private CabDriver cabDriver;
     private Rider rider;
 
     private float driverRating;
