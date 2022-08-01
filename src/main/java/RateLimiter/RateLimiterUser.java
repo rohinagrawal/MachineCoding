@@ -5,11 +5,11 @@ import lombok.Getter;
 import java.util.UUID;
 
 @Getter
-public class User {
+public class RateLimiterUser {
     String id;
     String name;
 
-    public User(String name){
+    public RateLimiterUser(String name){
         this.id = UUID.randomUUID().toString();
         this.name = name;
     }

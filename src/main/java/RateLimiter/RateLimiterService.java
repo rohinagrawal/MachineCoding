@@ -12,10 +12,10 @@ public class RateLimiterService {
 
     public boolean isAllowed(Request request){
 
-        if (!userBucket.containsKey(request.getUser().getId()))
-            generateBucket(request.getUser());
+        if (!userBucket.containsKey(request.getRateLimiterUser().getId()))
+            generateBucket(request.getRateLimiterUser());
 
-        Bucket bucket = userBucket.get(request.getUser().getId());
+        Bucket bucket = userBucket.get(request.getRateLimiterUser().getId());
 //        System.out.println("token requested : "+request.getToken());
         refill(bucket);
         if (bucket.getCurrentFilled()>=request.getToken()) {
@@ -26,9 +26,9 @@ public class RateLimiterService {
         return false;
     }
 
-    private void generateBucket(User user){
+    private void generateBucket(RateLimiterUser rateLimiterUser){
         Bucket bucket = new Bucket(5,10000);
-        userBucket.put(user.getId(), bucket);
+        userBucket.put(rateLimiterUser.getId(), bucket);
     }
 
     private void refill(Bucket bucket){
